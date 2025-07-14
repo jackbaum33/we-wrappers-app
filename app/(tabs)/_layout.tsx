@@ -35,7 +35,7 @@ export default function TabLayout() {
       <Tabs.Screen name="bracket" options={{ title: 'Bracket' }} />
       <Tabs.Screen name="chain" options={{ title: 'Chain' }} />
       <Tabs.Screen name="streak" options={{ title: 'Streak' }} />
-      <Tabs.Screen name="leaderboard" options={{ title: 'Leaderboard' }} />
+      <Tabs.Screen name="leaderboard" options={{ title: 'Groups' }} />
       <Tabs.Screen name="admin" options={{ title: 'Admin' }} />
     </Tabs>
   );
