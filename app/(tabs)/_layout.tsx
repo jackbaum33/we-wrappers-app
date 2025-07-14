@@ -1,45 +1,42 @@
+// app/(tabs)/_layout.tsx
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+        tabBarActiveTintColor: '#007AFF',
+        tabBarIcon: ({ color, size }) => {
+          switch (route.name) {
+            case 'index':
+              return <AntDesign name="home" size={size} color={color} />;
+            case 'wrap':
+              return <Ionicons name="camera-outline" size={size} color={color} />;
+            case 'bracket':
+              return <AntDesign name="Trophy" size={size} color={color} />;
+            case 'chain':
+              return <AntDesign name="team" size={size} color={color} />;
+            case 'streak':
+              return <Ionicons name="calendar-outline" size={size} color={color} />;
+            case 'leaderboard':
+              return <Ionicons name="stats-chart-outline" size={size} color={color} />;
+            case 'admin':
+              return <AntDesign name="setting" size={size} color={color} />;
+            default:
+              return null;
+          }
+        },
+      })}
+    >
+      <Tabs.Screen name="index" options={{ title: 'Home' }} />
+      <Tabs.Screen name="wrap" options={{ title: 'Wrap' }} />
+      <Tabs.Screen name="bracket" options={{ title: 'Bracket' }} />
+      <Tabs.Screen name="chain" options={{ title: 'Chain' }} />
+      <Tabs.Screen name="streak" options={{ title: 'Streak' }} />
+      <Tabs.Screen name="leaderboard" options={{ title: 'Leaderboard' }} />
+      <Tabs.Screen name="admin" options={{ title: 'Admin' }} />
     </Tabs>
   );
 }
