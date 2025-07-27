@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
-// 🔴 Removed: import { useUser } from '../../context/UserContext';
-// 🔴 Removed: import { getUserStreakDates } from '../../firebase/streak';
+import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import StreakCalendar from '../../components/StreakCalendar';
 
 export default function StreakScreen() {
@@ -23,12 +21,26 @@ export default function StreakScreen() {
     fetchMockStreaks();
   }, []);
 
-  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} />;
+  if (loading) return <ActivityIndicator style={{ marginTop: 40 }} color="silver" />;
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 22, fontWeight: 'bold', marginBottom: 10 }}>Your Streak</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Your Streak</Text>
       <StreakCalendar wrappedDates={dates} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: 'black',
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: 'silver',
+  },
+});
