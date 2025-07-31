@@ -34,11 +34,10 @@ export default function StreakScreen() {
         '2025-07-11',
         '2025-07-12',
         '2025-07-13',
-        '2025-07-31',
         '2025-07-30',
         '2025-07-29',
         // add today to see streak grow; example:
-        // new Date().toISOString().slice(0, 10),
+        new Date().toISOString().slice(0, 10),
       ]);
       setLoading(false);
     };
