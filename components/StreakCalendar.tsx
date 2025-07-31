@@ -1,15 +1,31 @@
+// components/StreakCalendar.tsx
 import React from 'react';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, DateData } from 'react-native-calendars';
 
-export default function StreakCalendar({ wrappedDates }: { wrappedDates: string[] }) {
-  const markedDates = wrappedDates.reduce((acc, date) => {
-    acc[date] = { marked: true, dotColor: 'silver' };
-    return acc;
-  }, {} as Record<string, any>);
+type Props = {
+  wrappedDates: string[]; // e.g., ['2025-07-10', '2025-07-12']
+  onDayPress?: (dateString: string) => void;
+};
+
+export default function StreakCalendar({ wrappedDates, onDayPress }: Props) {
+  // Mark wrapped dates so the day number is orange
+  const markedDates: Record<string, any> = {};
+  wrappedDates.forEach((date) => {
+    markedDates[date] = {
+      customStyles: {
+        text: {
+          color: 'orange',
+          fontWeight: 'bold',
+        },
+      },
+    };
+  });
 
   return (
     <Calendar
       markedDates={markedDates}
+      markingType="custom"
+      // Dark theme
       theme={{
         backgroundColor: 'black',
         calendarBackground: 'black',
@@ -30,6 +46,9 @@ export default function StreakCalendar({ wrappedDates }: { wrappedDates: string[
         textDayFontSize: 16,
         textMonthFontSize: 18,
         textDayHeaderFontSize: 14,
+      }}
+      onDayPress={(day: DateData) => {
+        if (onDayPress) onDayPress(day.dateString);
       }}
     />
   );
