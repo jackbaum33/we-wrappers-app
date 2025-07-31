@@ -63,7 +63,7 @@ export default function LeaderboardScreen() {
 
       const friendsWeekly: Leader[] = [
         { name: 'Alice', count: 12 },
-        { name: 'Bob', count: 10 },
+        { name: 'Bob', count: 2 },
         { name: 'Charlie', count: 8 },
       ];
 
