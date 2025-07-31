@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   tabContainer: {
+    marginTop: 50,
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: 12,

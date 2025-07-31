@@ -8,6 +8,7 @@ export default function ProgressScreen() {
 
   return (
     <View style={styles.container}>
+        <Text style={styles.title}>Progress Dashboard</Text>
       <View style={styles.toggleContainer}>
         <TouchableOpacity
           style={[styles.button, view === 'streak' && styles.activeButton]}
@@ -27,9 +28,17 @@ export default function ProgressScreen() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.scroll}>
-        {view === 'streak' ? <StreakScreen /> : <LeaderboardScreen />}
-      </ScrollView>
+      {view === 'streak' ? (
+        // Streak content can scroll if it needs to
+        <ScrollView style={styles.scroll}>
+          <StreakScreen />
+        </ScrollView>
+      ) : (
+        // Leaderboard uses FlatList internally; don't wrap in ScrollView
+        <View style={styles.scroll}>
+          <LeaderboardScreen />
+        </View>
+      )}
     </View>
   );
 }
@@ -38,6 +47,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
+  },
+  title:
+  {
+    textAlign: 'center',
+    marginTop: 60,
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: 'silver',
   },
   toggleContainer: {
     flexDirection: 'row',
@@ -48,7 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#111',
   },
   button: {
-    marginTop: 50,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
