@@ -44,7 +44,7 @@ export default function LeaderboardScreen() {
       '2025-07-28',
       '2025-07-30',
       // Uncomment to simulate today:
-      // new Date().toISOString().slice(0, 10),
+      new Date().toISOString().slice(0, 10),
     ],
     []
   );
