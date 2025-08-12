@@ -11,9 +11,9 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ChainScreen from '../(screens)/chain';
-import BracketTree from '../../components/bracket/BracketTree';
+import BracketTree from '../../components/BracketTree';
 
 type Friend = { id: string; name: string };
 type SeriesScores = {
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'black' },
   title: {
     textAlign: 'center',
-    marginTop: 60,
+    marginTop: 70,
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 0,
